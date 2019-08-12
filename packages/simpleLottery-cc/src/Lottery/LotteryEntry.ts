@@ -16,19 +16,13 @@ export class LotteryEntry extends ConvectorModel<LotteryEntry> {
   public readonly type = "au.com.tabcorp.simple.lotteryEntry";
 
   @Required()
-  public test: string;
+  public id: string;
 
   @Required()
-  // @Validate(
-  //   yup
-  //     .array()
-  //     .of(yup.number())
-  //     .min(MIN_NUMBER)
-  //     .max(MAX_NUMBER)
-  // )
-  public numbers: Array<number>;
+  public numbers: number[];
 
-  public draw: LotteryDraw;
+  @Required()
+  public drawNumber: string;
 
   public isValid(): boolean {
     const unique = [...new Set(this.numbers)];

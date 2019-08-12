@@ -1,30 +1,44 @@
 import { ObjectType, Field, InputType } from "type-graphql";
+import { LotteryDraw } from "simplelottery-cc";
 
 @ObjectType({
   description:
     "A Draw is a single lottery instance, represented by Draw Number conducted on a certain date"
 })
-export class Draw {
+export class Draw extends LotteryDraw {
   @Field(type => String)
-  drawNumber: string;
+  id: string;
 
   @Field(type => Date)
-  startDate: Date = new Date();
+  public set start(value: Date) {
+    this.startDate = value.getTime();
+  }
+
+  public get start() {
+    return new Date(this.startDate);
+  }
 
   @Field(type => Date)
-  endDate: Date = new Date();
+  public set end(value: Date) {
+    this.endDate = value.getTime();
+  }
+
+  public get end() {
+    return new Date(this.endDate);
+  }
 
   @Field({
     description: "Use `nextStatus` to move the draw through the workflow"
   })
-  status: string;
+  readonly status: string;
 
   public constructor(fields?: {
-    drawNumber?: string;
-    startDate?: Date;
-    endDate?: Date;
+    id?: string;
+    startDate?: number;
+    endDate?: number;
     status?: string;
   }) {
+    super();
     if (fields) {
       Object.assign(this, fields);
     }
@@ -38,11 +52,11 @@ export class Draw {
 })
 export class DrawInput implements Partial<Draw> {
   @Field(type => String)
-  drawNumber!: string;
+  id!: string;
 
   @Field(type => Date)
-  startDate!: Date;
+  start!: Date;
 
   @Field(type => Date)
-  endDate!: Date;
+  end!: Date;
 }

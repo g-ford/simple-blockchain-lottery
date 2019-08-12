@@ -8,20 +8,21 @@ import { throws } from "assert";
 @Resolver(of => Draw)
 export class DrawResolver {
   @Query(returns => Draw, { nullable: true })
-  public async getDraw(@Arg("drawNumber") drawNumber: string) {
-    const raw = await DrawService.get(drawNumber);
-
-    return this.reformat(raw);
+  public async getDraw(@Arg("id") id: string) {
+    const raw = await DrawService.get(id);
+    return new Draw(raw);
   }
 
   @Mutation(returns => Draw)
   public async updateDraw(@Arg("draw") draw: DrawInput) {
-    const raw = await DrawService.create(
-      draw.drawNumber,
-      draw.startDate.toISOString(),
-      draw.endDate.toISOString()
-    );
-    return this.reformat(raw);
+    const bcDraw = new LotteryDraw();
+    bcDraw.id = draw.id;
+    bcDraw.startDate = draw.start.getTime();
+    bcDraw.endDate = draw.end.getTime();
+
+    const raw = await DrawService.create(bcDraw);
+
+    return new Draw(raw);
   }
 
   @Mutation(returns => Draw, {
@@ -29,23 +30,6 @@ export class DrawResolver {
   })
   public async nextStatus(@Arg("drawNumber") drawNumber: string) {
     const raw = await DrawService.open(drawNumber);
-
-    return this.reformat(raw);
-  }
-
-  private reformat(raw) {
-    const draw = new LotteryDraw(raw);
-
-    console.debug(raw);
-    console.log(draw);
-    console.log(draw.status);
-
-    const result = new Draw({
-      drawNumber: draw.id,
-      startDate: new Date(draw.startDate),
-      endDate: new Date(draw.endDate),
-      status: draw.status
-    });
-    return result;
+    return new Draw(raw);
   }
 }

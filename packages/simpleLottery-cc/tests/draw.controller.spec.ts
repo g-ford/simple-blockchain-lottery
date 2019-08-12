@@ -38,7 +38,13 @@ describe("DrawController", () => {
     it("create a Draw in Pending state", async () => {
       const d = new Date();
       const id = uuid();
-      await simplelotteryCtrl.create(id, d.toISOString(), d.toISOString());
+
+      const draw = new LotteryDraw();
+      draw.id = id;
+      draw.startDate = d.getTime();
+      draw.endDate = d.getTime();
+
+      await simplelotteryCtrl.create(draw);
 
       const justSavedModel = await adapter.getById<LotteryDraw>(id);
 
@@ -53,11 +59,12 @@ describe("DrawController", () => {
 
       const id = uuid();
 
-      await simplelotteryCtrl.create(
-        id,
-        start.toISOString().slice(0, 10),
-        end.toISOString().slice(0, 10)
-      );
+      const draw = new LotteryDraw();
+      draw.id = id;
+      draw.startDate = start.getTime();
+      draw.endDate = end.getTime();
+
+      await simplelotteryCtrl.create(draw);
 
       const justSavedModel = await adapter.getById<LotteryDraw>(id);
 
@@ -73,11 +80,12 @@ describe("DrawController", () => {
 
       const id = uuid();
 
-      await simplelotteryCtrl.create(
-        id,
-        start.toISOString().slice(0, 10),
-        end.toISOString().slice(0, 10)
-      );
+      const draw = new LotteryDraw();
+      draw.id = id;
+      draw.startDate = start.getTime();
+      draw.endDate = end.getTime();
+
+      await simplelotteryCtrl.create(draw);
       await simplelotteryCtrl.open(id);
 
       const justSavedModel = await adapter.getById<LotteryDraw>(id);

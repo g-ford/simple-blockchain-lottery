@@ -13,6 +13,7 @@ import { ClientFactory } from "@worldsibu/convector-core";
 
 import { DrawController } from "simplelottery-cc";
 import { log } from "../config";
+import { EntryController } from "simplelottery-cc/src";
 
 const adapter = new FabricControllerAdapter({
   txTimeout: 300000,
@@ -26,6 +27,7 @@ const adapter = new FabricControllerAdapter({
 
 export const initAdapter = adapter.init();
 export const DrawService: any = ClientFactory(DrawController, adapter);
+export const EntryService: any = ClientFactory(EntryController, adapter);
 
 async function checkService() {
   await initAdapter;
@@ -37,7 +39,7 @@ async function checkService() {
       );
     } else {
       log.debug(
-        "Should be set. Context path with cryptographic materials exists"
+        "Connection to Fabric looks good. Context path with cryptographic materials exists"
       );
     }
   });

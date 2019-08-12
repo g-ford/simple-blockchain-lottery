@@ -12,29 +12,28 @@ import { DateRegex } from "./utils";
 @Controller("entry")
 export class EntryController extends ConvectorController<ChaincodeTx> {
   @Invokable()
-  public async create(
-    @Param(yup.string()) id: string,
-    @Param(yup.string()) drawNumber: string,
-    @Param(yup.array().of(yup.number())) numbers: number[]
-  ) {
-    const draw = await LotteryDraw.getOne(drawNumber);
+  public async getByDrawNumber(@Param(yup.string()) drawNumber: string) {
+    // this might be a candidate for direct CouchDB access in a real world scenario
+    const all = await LotteryEntry.getAll();
+    console.log("All", all);
+    const filtered = all.filter(x => x.drawNumber == drawNumber);
+    console.log("Filtered", filtered);
+    return all;
+  }
 
-    console.log(draw);
+  @Invokable()
+  public async create(@Param(LotteryEntry) entry: LotteryEntry) {
+    const draw = await LotteryDraw.getOne(entry.drawNumber);
 
     if (draw.status != LotteryState.OPEN) {
       throw Error("Cannot create Entry for a Draw that is not OPEN");
     }
 
-    const existing = await LotteryEntry.getOne(id);
+    const existing = await LotteryEntry.getOne(entry.id);
 
     if (existing && existing.id) {
       throw Error("A entry with that ID already exists");
     }
-
-    const entry = new LotteryEntry({
-      draw: draw,
-      numbers: numbers
-    });
 
     if (!entry.isValid) {
       throw Error("Not a valid entry");

@@ -18,18 +18,9 @@ export class DrawController extends ConvectorController<ChaincodeTx> {
   }
 
   @Invokable()
-  public async create(
-    @Param(yup.string()) drawNumber: string,
-    @Param(yup.string().matches(DateRegex)) startDate: stringDate,
-    @Param(yup.string().matches(DateRegex)) endDate: stringDate
-  ) {
-    let draw = new LotteryDraw();
-    draw.id = drawNumber;
-    draw.startDate = new Date(startDate).getTime();
-    draw.endDate = new Date(endDate).getTime();
+  public async create(@Param(LotteryDraw) draw: LotteryDraw) {
     draw.status = LotteryState.PENDING;
     await draw.save();
-
     return draw;
   }
 

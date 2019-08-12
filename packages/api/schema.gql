@@ -12,9 +12,9 @@ scalar DateTime
 A Draw is a single lottery instance, represented by Draw Number conducted on a certain date
 """
 type Draw {
-  drawNumber: String!
-  startDate: DateTime!
-  endDate: DateTime!
+  id: String!
+  start: DateTime!
+  end: DateTime!
 
   """Use `nextStatus` to move the draw through the workflow"""
   status: String!
@@ -26,13 +26,19 @@ For creating or updating draws. See Draw for more info.
   When updating a Draw you cannot directly set the `status`
 """
 input DrawInput {
-  drawNumber: String!
-  startDate: DateTime!
-  endDate: DateTime!
+  id: String!
+  start: DateTime!
+  end: DateTime!
 }
 
 type Entry {
-  draw: Draw!
+  id: String!
+  drawNumber: String!
+  numbers: [Float!]!
+}
+
+input EntryInput {
+  drawNumber: String!
   numbers: [Float!]!
 }
 
@@ -41,8 +47,10 @@ type Mutation {
 
   """Progresses the Draw through the workflow"""
   nextStatus(drawNumber: String!): Draw!
+  createEntry(entry: EntryInput!): Entry!
 }
 
 type Query {
-  getDraw(drawNumber: String!): Draw
+  getDraw(id: String!): Draw
+  getEntries(drawNumber: String!): [Entry!]
 }

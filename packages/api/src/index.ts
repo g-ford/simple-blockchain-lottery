@@ -4,10 +4,11 @@ import { DrawResolver } from "./resolvers/DrawResolver";
 import { ApolloServer } from "apollo-server";
 import { port } from "./config/env";
 import { log } from "./config";
+import { EntryResolver } from "./resolvers/EntryResolver";
 
 const bootstrap = async () => {
   const schema = await buildSchema({
-    resolvers: [DrawResolver],
+    resolvers: [DrawResolver, EntryResolver],
     emitSchemaFile: true
   });
 
