@@ -6,6 +6,25 @@ const dispatchers: { [id: string]: (fetchType: string, params: any) => any } = {
     let query;
 
     switch (fetchType) {
+      case "OPEN":
+        query = gql`
+          mutation open($id: String!) {
+            data: nextStatus(drawNumber: $id) {
+              id
+              start
+              end
+              status
+            }
+          }
+        `;
+        const openQuery = await client.mutate({
+          mutation: query,
+          variables: {
+            id: params.id
+          }
+        });
+        return openQuery.data;
+
       case "GET_LIST":
         query = gql`
           query getAllDraws {
