@@ -18,6 +18,12 @@ export class DrawController extends ConvectorController<ChaincodeTx> {
   }
 
   @Invokable()
+  public async getAll() {
+    let draw = await LotteryDraw.getAll();
+    return draw;
+  }
+
+  @Invokable()
   public async create(@Param(LotteryDraw) draw: LotteryDraw) {
     draw.status = LotteryState.PENDING;
     await draw.save();

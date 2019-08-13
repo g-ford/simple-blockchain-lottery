@@ -13,6 +13,12 @@ export class DrawResolver {
     return new Draw(raw);
   }
 
+  @Query(returns => [Draw])
+  public async allDraws() {
+    const raw = await DrawService.getAll();
+    return raw.map(x => new Draw(x));
+  }
+
   @Mutation(returns => Draw)
   public async updateDraw(@Arg("draw") draw: DrawInput) {
     const bcDraw = new LotteryDraw();

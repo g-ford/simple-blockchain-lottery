@@ -52,5 +52,6 @@ type Mutation {
 
 type Query {
   getDraw(id: String!): Draw
+  allDraws: [Draw!]!
   getEntries(drawNumber: String!): [Entry!]
 }
