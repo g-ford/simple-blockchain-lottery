@@ -1,26 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+
+import { Admin, Resource } from "react-admin";
+import { LotteryAPI } from "./dataProviders/lotteryAPI";
+import { DrawList, DrawCreate, DrawEdit } from "./components/draw";
 
 const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Admin dataProvider={LotteryAPI}>
+      <Resource
+        name="draws"
+        list={DrawList}
+        edit={DrawEdit}
+        create={DrawCreate}
+      />
+    </Admin>
   );
-}
+};
 
 export default App;
