@@ -17,13 +17,18 @@ const dispatchers: { [id: string]: (fetchType: string, params: any) => any } = {
             }
           }
         `;
-        const openQuery = await client.mutate({
-          mutation: query,
-          variables: {
-            id: params.id
-          }
-        });
-        return openQuery.data;
+        try {
+          const openQuery = await client.mutate({
+            mutation: query,
+            variables: {
+              id: params.id
+            }
+          });
+          return openQuery.data;
+        } catch (error) {
+          console.log(error);
+          return null;
+        }
 
       case "GET_LIST":
         query = gql`
