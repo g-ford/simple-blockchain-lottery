@@ -1,26 +1,21 @@
 // tslint:disable:no-unused-expression
 import uuid from "uuid/v4";
 import { join } from "path";
-import * as chai from "chai";
-import { expect } from "chai";
-import chaiAsPromised from "chai-as-promised";
 import { MockControllerAdapter } from "@worldsibu/convector-adapter-mock";
 import {
   ClientFactory,
   ConvectorControllerClient
 } from "@worldsibu/convector-core";
-import "mocha";
+import "jest";
 
 import { DrawController } from "../src/draw.controller";
 import { LotteryDraw, LotteryState } from "../src/Lottery";
-
-chai.use(chaiAsPromised);
 
 describe("DrawController", () => {
   let adapter: MockControllerAdapter;
   let simplelotteryCtrl: ConvectorControllerClient<DrawController>;
 
-  before(async () => {
+  beforeAll(async () => {
     // Mocks the blockchain execution environment
     adapter = new MockControllerAdapter();
     simplelotteryCtrl = ClientFactory(DrawController, adapter);
@@ -48,8 +43,8 @@ describe("DrawController", () => {
 
       const justSavedModel = await adapter.getById<LotteryDraw>(id);
 
-      expect(justSavedModel.id).to.exist;
-      expect(justSavedModel.status).to.equal(LotteryState.PENDING);
+      expect(justSavedModel.id).not.toBeNull();
+      expect(justSavedModel.status).toBe(LotteryState.PENDING);
     });
   });
 
@@ -71,7 +66,7 @@ describe("DrawController", () => {
 
       const justSavedModel = await adapter.getById<LotteryDraw>(id);
 
-      expect(justSavedModel.status).to.equal(LotteryState.OPEN);
+      expect(justSavedModel.status).toBe(LotteryState.OPEN);
     });
 
     // it("throws on invalid draw", async () => {

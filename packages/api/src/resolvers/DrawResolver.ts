@@ -2,8 +2,6 @@ import { Resolver, Query, Arg, Mutation } from "type-graphql";
 import { Draw, DrawInput } from "../schema";
 import { DrawService, initAdapter } from "../services/fabricService";
 import { LotteryDraw } from "simplelottery-cc";
-import { log } from "../config";
-import { throws } from "assert";
 
 @Resolver(of => Draw)
 export class DrawResolver {
@@ -38,7 +36,7 @@ export class DrawResolver {
     @Arg("drawNumber") drawNumber: string,
     @Arg("currentStatus") currentStatus: string
   ) {
-    let raw;
+    let raw: any;
     switch (currentStatus) {
       case "PENDING":
         raw = await DrawService.open(drawNumber);

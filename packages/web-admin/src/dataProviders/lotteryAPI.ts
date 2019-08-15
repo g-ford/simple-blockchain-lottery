@@ -21,9 +21,7 @@ const dispatchers: { [id: string]: (fetchType: string, params: any) => any } = {
           `;
           const openQuery = await client.mutate({
             mutation: query,
-            variables: {
-              id: params.id
-            }
+            variables: params
           });
           return openQuery.data;
 
@@ -116,8 +114,9 @@ const handleErrors = async (func: Function) => {
     if (error.message.includes("Original stack")) {
       console.log("Extracting original message");
       const originalMessage = error.message.match(/"message":"(.*)"/);
-      console.log(originalMessage[1]);
-      throw new Error(originalMessage[1]);
+      if (originalMessage && originalMessage.length > 1) {
+        throw new Error(originalMessage[1]);
+      }
     }
     throw error;
   }

@@ -1,6 +1,6 @@
 import { ObjectType, Field, InputType } from "type-graphql";
 import { Draw } from "./Draw";
-import { LotteryEntry } from "../../../../chaincode-simpleLottery/packages/simplelottery-cc/src";
+import { LotteryEntry } from "simplelottery-cc";
 import { extractExtensionDefinitions } from "graphql-tools";
 
 @ObjectType()

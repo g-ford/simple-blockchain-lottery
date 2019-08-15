@@ -56,7 +56,7 @@ export class DrawController extends ConvectorController<ChaincodeTx> {
     }
 
     if (!draw.canClose()) {
-      throw Error("Draw cannot be opened at this time");
+      throw Error("Draw cannot be closed at this time");
     }
 
     draw.status = LotteryState.CLOSED;

@@ -1,7 +1,6 @@
 import * as chai from "chai";
+import jest from "jest";
 import { LotteryDraw, LotteryState } from "../../src/Lottery/LotteryDraw";
-
-chai.should();
 
 describe("LotteryDraw", () => {
   describe("#canOpen", () => {
@@ -15,7 +14,7 @@ describe("LotteryDraw", () => {
       now.setDate(now.getDate() + 1);
       draw.endDate = now.getTime();
 
-      draw.canOpen().should.be.false;
+      expect(draw.canOpen()).toBe(false);
     });
 
     it("should return false if start date is in future", () => {
@@ -28,7 +27,7 @@ describe("LotteryDraw", () => {
       now.setDate(now.getDate() + 10);
       draw.endDate = now.getTime();
 
-      draw.canOpen().should.be.false;
+      expect(draw.canOpen()).toBe(false);
     });
 
     it("should return true if between start and end", () => {
@@ -42,12 +41,12 @@ describe("LotteryDraw", () => {
       draw.endDate = now.getTime();
       draw.status = LotteryState.PENDING;
 
-      draw.canOpen().should.be.true;
+      expect(draw.canOpen()).toBe(true);
     });
 
     it("should return false if dates are undefined", () => {
       const draw = new LotteryDraw();
-      draw.canOpen().should.be.false;
+      expect(draw.canOpen()).toBe(false);
     });
   });
 });

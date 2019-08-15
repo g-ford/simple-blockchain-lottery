@@ -1,16 +1,13 @@
 // tslint:disable:no-unused-expression
 import { v4 as uuid } from "uuid";
 import { join } from "path";
-import * as chai from "chai";
-import { expect } from "chai";
-import chaiAsPromised from "chai-as-promised";
 import { MockControllerAdapter } from "@worldsibu/convector-adapter-mock";
 import {
   ClientFactory,
   ConvectorControllerClient,
   ConvectorModel
 } from "@worldsibu/convector-core";
-import "mocha";
+import "jest";
 
 import {
   EntryController,
@@ -20,15 +17,13 @@ import {
   LotteryEntry
 } from "../src/";
 
-chai.use(chaiAsPromised);
-
 describe("EntryController", () => {
   let adapter: MockControllerAdapter;
   let entryContoller: ConvectorControllerClient<EntryController>;
   let drawContoller: ConvectorControllerClient<DrawController>;
   let draw: LotteryDraw;
 
-  before(async () => {
+  beforeAll(async () => {
     // Mocks the blockchain execution environment
     adapter = new MockControllerAdapter();
     entryContoller = ClientFactory(EntryController, adapter);
@@ -60,7 +55,7 @@ describe("EntryController", () => {
       entry.id = uuid();
       entry.drawNumber = "draw1";
       entry.numbers = [1, 2, 3, 4, 5];
-      expect(entryContoller.create(entry)).to.eventually.be.rejectedWith(Error);
+      await expect(entryContoller.create(entry)).rejects.toThrow(Error);
     });
 
     it("create a valid entry", async () => {});
