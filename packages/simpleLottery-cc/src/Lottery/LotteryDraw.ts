@@ -41,4 +41,8 @@ export class LotteryDraw extends ConvectorModel<LotteryDraw> {
       now <= this.endDate
     );
   }
+
+  public canClose(): boolean {
+    return this.status === LotteryState.OPEN;
+  }
 }

@@ -34,8 +34,22 @@ export class DrawResolver {
   @Mutation(returns => Draw, {
     description: "Progresses the Draw through the workflow"
   })
-  public async nextStatus(@Arg("drawNumber") drawNumber: string) {
-    const raw = await DrawService.open(drawNumber);
+  public async nextStatus(
+    @Arg("drawNumber") drawNumber: string,
+    @Arg("currentStatus") currentStatus: string
+  ) {
+    let raw;
+    switch (currentStatus) {
+      case "PENDING":
+        raw = await DrawService.open(drawNumber);
+        break;
+      case "OPEN":
+        raw = await DrawService.close(drawNumber);
+        break;
+      default:
+        throw Error("Invalid current state");
+    }
+
     return new Draw(raw);
   }
 }

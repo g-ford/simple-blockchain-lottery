@@ -46,4 +46,21 @@ export class DrawController extends ConvectorController<ChaincodeTx> {
     await draw.save();
     return draw;
   }
+
+  @Invokable()
+  public async close(@Param(yup.string()) drawNumber: string) {
+    let draw = await LotteryDraw.getOne(drawNumber);
+
+    if (!draw.id) {
+      throw Error(`No draw exists for draw number ${drawNumber}`);
+    }
+
+    if (!draw.canClose()) {
+      throw Error("Draw cannot be opened at this time");
+    }
+
+    draw.status = LotteryState.CLOSED;
+    await draw.save();
+    return draw;
+  }
 }

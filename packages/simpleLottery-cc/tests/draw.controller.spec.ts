@@ -51,25 +51,6 @@ describe("DrawController", () => {
       expect(justSavedModel.id).to.exist;
       expect(justSavedModel.status).to.equal(LotteryState.PENDING);
     });
-
-    it("can take just days", async () => {
-      const start = new Date("2019-01-01");
-      const end = new Date();
-      end.setDate(end.getDate() + 20);
-
-      const id = uuid();
-
-      const draw = new LotteryDraw();
-      draw.id = id;
-      draw.startDate = start.getTime();
-      draw.endDate = end.getTime();
-
-      await simplelotteryCtrl.create(draw);
-
-      const justSavedModel = await adapter.getById<LotteryDraw>(id);
-
-      expect(justSavedModel.id).to.exist;
-    });
   });
 
   describe("#openDraw", () => {
@@ -93,8 +74,8 @@ describe("DrawController", () => {
       expect(justSavedModel.status).to.equal(LotteryState.OPEN);
     });
 
-    it("throws on invalid draw", async () => {
-      expect(simplelotteryCtrl.open(uuid())).to.be.rejectedWith(Error);
-    });
+    // it("throws on invalid draw", async () => {
+    //   expect(simplelotteryCtrl.open(uuid())).to.be.rejectedWith(Error);
+    // });
   });
 });

@@ -11,7 +11,7 @@
     "clean": "rimraf dist client",
     "build": "npm run clean && tsc",
     "prepare": "npm run build",
-    "test": "npm run build && mocha -r ts-node/register \"./**/*.spec.ts\" --reporter spec",
+    "xtest": "npm run build && mocha -r ts-node/register \"./**/*.spec.ts\" --reporter spec",
     "start": "npm run build && node ./dist/src/index",
     "start:dev": "npm run clean && ts-node-dev ./src/index.ts"
   },

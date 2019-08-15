@@ -46,7 +46,7 @@ type Mutation {
   updateDraw(draw: DrawInput!): Draw!
 
   """Progresses the Draw through the workflow"""
-  nextStatus(drawNumber: String!): Draw!
+  nextStatus(currentStatus: String!, drawNumber: String!): Draw!
   createEntry(entry: EntryInput!): Entry!
 }
 
