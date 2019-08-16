@@ -1,11 +1,4 @@
-import * as yup from "yup";
-import { LotteryDraw } from "./LotteryDraw";
-import {
-  ConvectorModel,
-  Required,
-  Validate,
-  ReadOnly
-} from "@worldsibu/convector-core";
+import { ConvectorModel, Required, ReadOnly } from "@worldsibu/convector-core";
 
 const MAX_NUMBER = 20;
 const MIN_NUMBER = 1;
@@ -13,7 +6,7 @@ const ENTRY_LENGTH = 5;
 
 export class LotteryEntry extends ConvectorModel<LotteryEntry> {
   @ReadOnly()
-  public readonly type = "au.com.tabcorp.simple.lotteryEntry";
+  public type = "au.com.tabcorp.simple.lotteryEntry";
 
   @Required()
   public id: string;

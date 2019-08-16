@@ -1,3 +1,7 @@
+# Web Admin for Simple Lottery
+
+Built on top of React Admin.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

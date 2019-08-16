@@ -1,6 +1,6 @@
 import { Resolver, Query, Arg, Mutation } from "type-graphql";
 import { Draw, DrawInput } from "../schema";
-import { DrawService, initAdapter } from "../services/fabricService";
+import { DrawService } from "../services/fabricService";
 import { LotteryDraw } from "simplelottery-cc";
 
 @Resolver(of => Draw)

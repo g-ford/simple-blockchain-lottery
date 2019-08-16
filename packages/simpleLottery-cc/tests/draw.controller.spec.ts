@@ -8,14 +8,13 @@ import {
 } from "@worldsibu/convector-core";
 import "jest";
 
-import { DrawController } from "../src/draw.controller";
-import { LotteryDraw, LotteryState } from "../src/Lottery";
+import { DrawController, LotteryDraw, LotteryState } from "../src/";
 
 describe("DrawController", () => {
   let adapter: MockControllerAdapter;
   let simplelotteryCtrl: ConvectorControllerClient<DrawController>;
 
-  beforeAll(async () => {
+  beforeEach(async () => {
     // Mocks the blockchain execution environment
     adapter = new MockControllerAdapter();
     simplelotteryCtrl = ClientFactory(DrawController, adapter);

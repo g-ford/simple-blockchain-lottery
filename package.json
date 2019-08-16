@@ -1,5 +1,5 @@
 {
-  "name": "tlottChain",
+  "name": "simple-blockchain-lottery",
   "version": "0.1.0",
   "description": "Bootstrap project for Chaincodes tlottChain",
   "files": [

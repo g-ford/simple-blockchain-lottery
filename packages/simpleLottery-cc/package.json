@@ -14,6 +14,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "@types/yup": "^0.26.22",
     "@worldsibu/convector-core": "~1.3.0",
     "@worldsibu/convector-platform-fabric": "~1.3.0",
     "reflect-metadata": "^0.1.12",
@@ -22,6 +23,7 @@
   "devDependencies": {
     "@types/jest": "^24.0.17",
     "@types/node": "^10.12.5",
+    "@types/uuid": "^3.4.5",
     "@worldsibu/convector-storage-couchdb": "~1.3.0",
     "jest": "^24.8.0",
     "rimraf": "^2.6.2",

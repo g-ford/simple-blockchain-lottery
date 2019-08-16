@@ -1,5 +1,5 @@
 import { LotteryEntry } from "../../src/Lottery/LotteryEntry";
-import jest from "jest";
+import "jest";
 
 describe("LotteryEntry", () => {
   describe("#isValid", () => {

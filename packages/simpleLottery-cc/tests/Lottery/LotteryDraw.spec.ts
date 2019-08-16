@@ -1,5 +1,4 @@
-import * as chai from "chai";
-import jest from "jest";
+import "jest";
 import { LotteryDraw, LotteryState } from "../../src/Lottery/LotteryDraw";
 
 describe("LotteryDraw", () => {

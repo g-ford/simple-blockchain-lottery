@@ -7,7 +7,6 @@ import {
   Param
 } from "@worldsibu/convector-core";
 import { LotteryDraw, LotteryState } from "./Lottery";
-import { DateRegex, stringDate } from "./utils";
 
 @Controller("draw")
 export class DrawController extends ConvectorController<ChaincodeTx> {

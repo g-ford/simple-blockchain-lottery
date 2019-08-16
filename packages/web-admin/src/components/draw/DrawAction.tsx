@@ -42,7 +42,7 @@ const DrawActionOpen: React.FC = (props: any) => {
       options={options}
       payload={{
         id: props.record.id,
-        currentState: props.record.status
+        currentStatus: props.record.status
       }}
     >
       {(open: any) => (

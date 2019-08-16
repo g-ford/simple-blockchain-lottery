@@ -3,15 +3,14 @@ import {
   ConvectorModel,
   ReadOnly,
   Required,
-  Validate,
-  Default
+  Validate
 } from "@worldsibu/convector-core";
 
 export enum LotteryState {
   PENDING = "PENDING",
   OPEN = "OPEN",
   CLOSED = "CLOSED",
-  DRAWING = "DRAWING",
+  DRAWN = "DRAWN",
   PAYING = "PAYING",
   COMPLETE = "COMPLETE"
 }

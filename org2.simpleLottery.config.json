@@ -17,6 +17,11 @@
       "name": "simplelottery-cc",
       "version": "file:./packages/simplelottery-cc",
       "controller": "EntryController"
+    },
+    {
+      "name": "simplelottery-cc",
+      "version": "file:./packages/simplelottery-cc",
+      "controller": "ResultsController"
     }
   ],
   "policy": {

@@ -2,7 +2,6 @@ import { Resolver, Query, Arg, Mutation } from "type-graphql";
 import { Entry, EntryInput } from "../schema";
 import { EntryService, DrawService } from "../services/fabricService";
 import { v4 as uuid } from "uuid";
-import { LotteryEntry } from "simplelottery-cc/src";
 
 @Resolver(of => Entry)
 export class EntryResolver {
