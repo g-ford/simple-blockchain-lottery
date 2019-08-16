@@ -7,8 +7,9 @@ This is a sample Hyperledger Fabric based project to simulate a simple lottery r
 - resellers
 - retailers
 
-|warning: | this is a work in progress and a proof of concept only. The lottery code itself is not robust or conforming to an regulatory standards.|
-|||
+| **Warning** | this is a work in progress and a proof of concept only. The lottery code itself is not robust or conforming to an regulatory standards. |
+| ----------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+
 
 # Components
 
