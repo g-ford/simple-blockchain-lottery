@@ -1,4 +1,4 @@
-# simplelottery-blockchain-lottery
+# simple-blockchain-lottery
 
 This is a sample Hyperledger Fabric based project to simulate a simple lottery running on the blockchain with several parties involved:
 
