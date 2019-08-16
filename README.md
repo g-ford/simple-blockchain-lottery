@@ -1,4 +1,4 @@
-# simplelottery-blochain-lottery
+# simplelottery-blockchain-lottery
 
 This is a sample Hyperledger Fabric based project to simulate a simple lottery running on the blockchain with several parties involved:
 
@@ -8,7 +8,7 @@ This is a sample Hyperledger Fabric based project to simulate a simple lottery r
 - retailers
 
 | **Warning** | this is a work in progress and a proof of concept only. The lottery code itself is not robust or conforming to an regulatory standards. |
-| ----------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| ----------- | :-------------------------------------------------------------------------------------------------------------------------------------- |
 
 
 # Components
