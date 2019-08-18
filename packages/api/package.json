@@ -26,6 +26,7 @@
     "winston": "^3.2.1"
   },
   "devDependencies": {
+    "@types/dotenv": "^6.1.1",
     "@types/node": "^10.12.5",
     "@types/winston": "^2.4.4",
     "rimraf": "^2.6.2",
