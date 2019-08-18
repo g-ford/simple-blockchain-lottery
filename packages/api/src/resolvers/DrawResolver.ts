@@ -7,13 +7,13 @@ import { LotteryDraw } from "simplelottery-cc";
 export class DrawResolver {
   @Query(returns => Draw, { nullable: true })
   public async getDraw(@Arg("id") id: string) {
-    const raw = await DrawService.get(id);
+    const raw: LotteryDraw = await DrawService.get(id);
     return new Draw(raw);
   }
 
   @Query(returns => [Draw])
   public async allDraws() {
-    const raw = await DrawService.getAll();
+    const raw: [LotteryDraw] = await DrawService.getAll();
     return raw.map(x => new Draw(x));
   }
 

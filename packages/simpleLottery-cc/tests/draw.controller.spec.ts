@@ -1,5 +1,5 @@
 // tslint:disable:no-unused-expression
-import uuid from "uuid/v4";
+import { v4 as uuid } from "uuid";
 import { join } from "path";
 import { MockControllerAdapter } from "@worldsibu/convector-adapter-mock";
 import {
@@ -14,7 +14,7 @@ describe("DrawController", () => {
   let adapter: MockControllerAdapter;
   let simplelotteryCtrl: ConvectorControllerClient<DrawController>;
 
-  beforeEach(async () => {
+  beforeAll(async () => {
     // Mocks the blockchain execution environment
     adapter = new MockControllerAdapter();
     simplelotteryCtrl = ClientFactory(DrawController, adapter);

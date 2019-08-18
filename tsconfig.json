@@ -2,23 +2,23 @@
   "compilerOptions": {
     "target": "es2015",
     "lib": ["esnext", "dom", "esnext.asynciterable", "es2016"],
-    "module": "esnext",
     "sourceMap": true,
-    "importHelpers": true,
-    "removeComments": false,
+
     "outDir": "./dist",
     "rootDir": "./src",
+
+    "module": "commonjs",
     "moduleResolution": "node",
     "esModuleInterop": true,
+
+    "declaration": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+
     "allowJs": true,
     "skipLibCheck": true,
-    "allowSyntheticDefaultImports": true,
+
     "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "resolveJsonModule": true,
-    "jsx": "react",
     "strictPropertyInitialization": false
   },
   "include": ["src"]
