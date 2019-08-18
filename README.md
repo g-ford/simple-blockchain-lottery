@@ -35,7 +35,7 @@ npm run cc:start -- simplelottery
 npx hurl invoke simplelottery draw_getAll
 
 # start the other components - API, frontend and admin
-npm run start
+npx lerna run start
 ```
 
 ### Bring your project to life

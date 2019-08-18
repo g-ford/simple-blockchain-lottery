@@ -15,7 +15,7 @@ import {
   LotteryState,
   DrawController,
   LotteryEntry
-} from "../src/";
+} from "../src";
 
 describe("EntryController", () => {
   let adapter: MockControllerAdapter;

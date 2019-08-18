@@ -26,6 +26,7 @@ export class ResultsController extends ConvectorController<ChaincodeTx> {
 
   @Invokable()
   public async create(@Param(LotteryResult) result: LotteryResult) {
+    console.log(result);
     const draw = await LotteryDraw.getOne(result.drawNumber);
 
     if (!draw.id) {
@@ -38,7 +39,7 @@ export class ResultsController extends ConvectorController<ChaincodeTx> {
 
     const existing = await LotteryEntry.getOne(result.id);
 
-    if (existing && existing.id) {
+    if (!!existing && existing.id) {
       throw Error("A result with that ID already exists");
     }
 
