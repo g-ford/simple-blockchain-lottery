@@ -24,19 +24,38 @@ TODO: make an architectural diagram with the following components:
 # Start
 
 ```
+# Install the right node
+nvm install
+nvm use
+
 # Install dependencies - From the root of your project
 npm i
 # Create a new development blockchain network  - From the root of your project
 npm run env:restart
+
 # Install your smart contract
 npm run cc:start -- simplelottery
-# Make a testing call to create a record in the ledger
-# Beware that the first call may fail with a timeout! Just happens the first time
-npx hurl invoke simplelottery draw_getAll
+# Or run in debug mode
+npm run cc:start:debug -- simplelottery
 
 # start the other components - API, frontend and admin
-npx lerna run start
+npm start
 ```
+
+## Explorer
+
+You can run Hyperledger Explorer to view what is happening on the Blockchain and the statistics around it.
+
+```
+# update some configuration
+npm run build
+
+# start the Explorer components
+cd packages/explorer
+docker-compose up
+```
+
+Then navigate a browser to http://localhost:8090/
 
 ### Bring your project to life
 

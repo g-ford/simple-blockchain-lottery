@@ -11,6 +11,7 @@
     "env:restart": "hurl new",
     "test": "npm-run-all -s lerna:test",
     "env:clean": "hurl clean",
+    "start": "npm run build && lerna run start --stream",
     "cc:start": "f() { npm run cc:package -- $1 org1; npm run cc:install $1; }; f",
     "cc:upgrade": "f() { npm run cc:package -- $1 org1; hurl upgrade $1 node $2  -P ./chaincode-$1; }; f",
     "cc:start:debug": "f() { npm run cc:package -- $1 org1; npm run cc:install:debug $1; }; f",
