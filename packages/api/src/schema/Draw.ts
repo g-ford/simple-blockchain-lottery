@@ -1,5 +1,6 @@
 import { ObjectType, Field, InputType } from "type-graphql";
 import { LotteryDraw } from "simplelottery-cc";
+import { Result } from "./Result";
 
 @ObjectType({
   description:
@@ -27,10 +28,11 @@ export class Draw extends LotteryDraw {
     return new Date(this.endDate);
   }
 
-  @Field({
-    description: "Use `nextStatus` to move the draw through the workflow"
-  })
+  @Field()
   readonly status: string;
+
+  @Field(type => Result, { nullable: true })
+  readonly results?: Result;
 
   public constructor(fields?: {
     id?: string;

@@ -1,10 +1,8 @@
 import { ObjectType, Field, InputType } from "type-graphql";
-import { Draw } from "./Draw";
-import { LotteryEntry } from "simplelottery-cc";
-import { extractExtensionDefinitions } from "graphql-tools";
+import { LotteryResult } from "simplelottery-cc";
 
 @ObjectType()
-export class Entry extends LotteryEntry {
+export class Result extends LotteryResult {
   @Field()
   id: string;
 
@@ -14,9 +12,19 @@ export class Entry extends LotteryEntry {
   @Field(type => [Number])
   numbers: number[];
 
+  @Field(type => Date)
+  public set date(value: Date) {
+    this.drawDate = value.getTime();
+  }
+
+  public get date() {
+    return new Date(this.drawDate);
+  }
+
   public constructor(fields?: {
     id?: string;
     numbers?: number;
+    drawDate?: number | Date;
     drawNumber?: string;
   }) {
     super();
@@ -24,13 +32,4 @@ export class Entry extends LotteryEntry {
       Object.assign(this, fields);
     }
   }
-}
-
-@InputType()
-export class EntryInput implements Partial<Entry> {
-  @Field()
-  drawNumber!: string;
-
-  @Field(type => [Number])
-  numbers!: number[];
 }

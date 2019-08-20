@@ -11,9 +11,12 @@ import * as fs from "fs";
 import { FabricControllerAdapter } from "@worldsibu/convector-adapter-fabric";
 import { ClientFactory } from "@worldsibu/convector-core";
 
-import { DrawController } from "simplelottery-cc";
+import {
+  DrawController,
+  EntryController,
+  ResultsController
+} from "simplelottery-cc";
 import { log } from "../config";
-import { EntryController } from "simplelottery-cc/src";
 
 const adapter = new FabricControllerAdapter({
   txTimeout: 300000,
@@ -28,6 +31,7 @@ const adapter = new FabricControllerAdapter({
 export const initAdapter = adapter.init();
 export const DrawService: any = ClientFactory(DrawController, adapter);
 export const EntryService: any = ClientFactory(EntryController, adapter);
+export const ResultsService: any = ClientFactory(ResultsController, adapter);
 
 async function checkService() {
   await initAdapter;

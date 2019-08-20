@@ -16,6 +16,9 @@ const dispatchers: { [id: string]: (fetchType: string, params: any) => any } = {
                 start
                 end
                 status
+                results {
+                  numbers
+                }
               }
             }
           `;
@@ -33,6 +36,9 @@ const dispatchers: { [id: string]: (fetchType: string, params: any) => any } = {
                 start
                 end
                 status
+                results {
+                  numbers
+                }
               }
             }
           `;
@@ -55,6 +61,9 @@ const dispatchers: { [id: string]: (fetchType: string, params: any) => any } = {
                 start
                 end
                 status
+                results {
+                  numbers
+                }
               }
             }
           `;

@@ -8,8 +8,8 @@ import { LotteryEntry } from "simplelottery-cc";
 export class EntryResolver {
   @Query(returns => [Entry], { nullable: true })
   public async getEntries(@Arg("drawNumber") drawNumber: string) {
-    const raw: [LotteryEntry] = await EntryService.getByDrawNumber(drawNumber);
-    const results = raw.map(x => new Entry(x));
+    const raw = await EntryService.getByDrawNumber(drawNumber);
+    const results = raw.map((x: any) => new Entry(x));
     console.log(results);
     return results;
   }

@@ -6,7 +6,7 @@ const ENTRY_LENGTH = 5;
 
 export class LotteryEntry extends ConvectorModel<LotteryEntry> {
   @ReadOnly()
-  public type = "au.com.tabcorp.simple.lotteryEntry";
+  public readonly type = "com.example.simple.lotteryEntry";
 
   @Required()
   public id: string;

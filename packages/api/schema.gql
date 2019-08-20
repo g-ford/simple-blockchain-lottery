@@ -15,9 +15,8 @@ type Draw {
   id: String!
   start: DateTime!
   end: DateTime!
-
-  """Use `nextStatus` to move the draw through the workflow"""
   status: String!
+  results: Result
 }
 
 """
@@ -54,4 +53,11 @@ type Query {
   getDraw(id: String!): Draw
   allDraws: [Draw!]!
   getEntries(drawNumber: String!): [Entry!]
+}
+
+type Result {
+  id: String!
+  drawNumber: String!
+  numbers: [Float!]!
+  date: DateTime!
 }

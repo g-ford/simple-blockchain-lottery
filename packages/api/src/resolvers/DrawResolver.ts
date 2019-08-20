@@ -1,7 +1,16 @@
-import { Resolver, Query, Arg, Mutation } from "type-graphql";
+import {
+  Resolver,
+  Query,
+  Arg,
+  Mutation,
+  FieldResolver,
+  Root
+} from "type-graphql";
 import { Draw, DrawInput } from "../schema";
-import { DrawService } from "../services/fabricService";
-import { LotteryDraw } from "simplelottery-cc";
+import { DrawService, ResultsService } from "../services/fabricService";
+import { LotteryDraw, LotteryResult, LotteryState } from "simplelottery-cc";
+import { v4 as uuid } from "uuid";
+import { Result } from "../schema/Result";
 
 @Resolver(of => Draw)
 export class DrawResolver {
@@ -44,10 +53,38 @@ export class DrawResolver {
       case "OPEN":
         raw = await DrawService.close(drawNumber);
         break;
+      case "CLOSED":
+        raw = await ResultsService.create(generateResults(drawNumber));
+        break;
       default:
         throw Error("Invalid current state");
     }
 
     return new Draw(raw);
   }
+
+  @FieldResolver()
+  public async results(@Root() draw: Draw) {
+    if (
+      draw.status === LotteryState.DRAWN ||
+      draw.status === LotteryState.PAYING
+    ) {
+      const raw = await ResultsService.getByDrawNumber(draw.id);
+      const results = new Result(raw);
+      return results;
+    }
+  }
 }
+
+const generateResults = (drawNumber: string) => {
+  const result = new LotteryResult();
+  result.id = uuid();
+  result.drawNumber = drawNumber;
+  result.numbers = new Array(5).fill(0).map(() => randomNumberInRange(1, 20));
+  result.drawDate = Date.now();
+  return result;
+};
+
+const randomNumberInRange = (min: number, max: number): number => {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+};

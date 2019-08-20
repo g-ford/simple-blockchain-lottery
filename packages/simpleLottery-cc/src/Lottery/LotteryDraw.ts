@@ -18,7 +18,7 @@ export enum LotteryState {
 export class LotteryDraw extends ConvectorModel<LotteryDraw> {
   @ReadOnly()
   @Required()
-  public readonly type = "au.com.tabcorp.simple.lotteryDraw";
+  public readonly type = "com.example.simple.lotteryDraw";
 
   @Required()
   @Validate(yup.string())
