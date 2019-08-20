@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import { makeStyles } from "@material-ui/styles";
-import { Button, Chip } from "@material-ui/core";
+import { Button } from "@material-ui/core";
 import LockOpen from "@material-ui/icons/LockOpen";
 import LockClosed from "@material-ui/icons/Lock";
 import DrawIcon from "@material-ui/icons/Gavel";
